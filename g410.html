@@ -904,14 +904,14 @@
                 progressRing.style.strokeDashoffset = '113';
                 progressText.textContent = '60%';
                 step2.classList.add('active');
-            }, 600);
+            }, 300);
             
             // Stage 3: 90%
             setTimeout(() => {
                 progressRing.style.strokeDashoffset = '28';
                 progressText.textContent = '90%';
                 step3.classList.add('active');
-            }, 1100);
+            }, 400);
             
             // Complete: 100%
             setTimeout(() => {
@@ -921,7 +921,7 @@
                 setTimeout(() => {
                     completeMessage.style.display = 'block';
                 }, 300);
-            }, 1600);
+            }, 600);
         }
         
         function closeModal() {
