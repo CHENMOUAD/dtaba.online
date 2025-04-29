@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Global eSIM Travel Packages</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7209b7;
+            --primary-dark: #560bad;
+            --secondary: #f72585;
+            --secondary-light: #ff4d6d;
+            --accent: #4cc9f0;
+            --accent-light: #64dfdf;
+            --dark-bg: #10002b;
+            --medium-bg: #240046;
+            --light-bg: #3c096c;
+            --text: #f8f9fa;
+            --text-muted: #d0d0d0;
+            --yellow: #ffd60a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--medium-bg) 100%);
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section - Screen 1 */
+        .hero {
+            background: linear-gradient(135deg, var(--medium-bg) 0%, var(--light-bg) 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(76, 201, 240, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(247, 37, 133, 0.15) 0%, transparent 40%);
+            z-index: 1;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text {
+            padding-right: 20px;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .hero-image {
+            position: relative;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            transform: perspective(1000px) rotateY(-10deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+        
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: var(--text);
+            padding: 15px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.4);
+            animation: pulse 2s infinite;
+            z-index: 3;
+            transform: rotate(10deg);
+        }
+        
+        /* Products Section - Screen 2 */
+        .products {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--medium-bg) 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+        
+        .products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(114, 9, 183, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(76, 201, 240, 0.15) 0%, transparent 40%);
+            z-index: 1;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            color: var(--accent);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+        }
+        
+        .product-card {
+            background: rgba(60, 9, 108, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(247, 37, 133, 0.2);
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(247, 37, 133, 0.5);
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            z-index: 1;
+        }
+        
+        .product-flag {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .product-title-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .flag-small {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            position: relative;
+        }
+        
+        .product-title::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent) 100%);
+            border-radius: 2px;
+        }
+        
+        .product-features {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .product-feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .product-feature-icon {
+            color: var(--accent);
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
+        
+        .product-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-type-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 30px 0 20px;
+            color: var(--text);
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        /* Recent Purchases - Scrolling Animation */
+        .purchases-section {
+            position: relative;
+            z-index: 2;
+            margin-top: 50px;
+            overflow: hidden;
+            padding: 20px 0;
+            background: rgba(16, 0, 43, 0.4);
+            border-radius: 15px;
+            border: 1px solid rgba(76, 201, 240, 0.15);
+        }
+        
+        .purchase-ticker-header {
+            padding: 0 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .purchase-ticker-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        
+        .purchase-ticker-title i {
+            margin-right: 10px;
+            animation: pulse-small 2s infinite;
+        }
+        
+        .purchase-live-indicator {
+            display: flex;
+            align-items: center;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            margin-right: 8px;
+            position: relative;
+        }
+        
+        .live-dot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            animation: live-pulse 1.5s infinite;
+        }
+        
+        .purchases-ticker {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .purchases-list {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+        
+        .purchase-item {
+            background: rgba(60, 9, 108, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(76, 201, 240, 0.15);
+            margin: 10px 20px;
+        }
+        
+        .purchase-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 201, 240, 0.4);
+        }
+        
+        .purchase-icon {
+            background: linear-gradient(135deg, var(--accent) 0%, #3a86ff 100%);
+            color: var(--text);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .purchase-info {
+            flex: 1;
+        }
+        
+        .purchase-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .purchase-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* Features Section - Screen 3 */
+        .features {
+            background: linear-gradient(135deg, var(--medium-bg) 0%, var(--dark-bg) 100%);
+            padding: 60px 0 80px;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 20%, rgba(247, 37, 133, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(76, 201, 240, 0.15) 0%, transparent 40%);
+            z-index: 1;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .feature-card {
+            padding: 20px;
+            background: rgba(36, 0, 70, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(76, 201, 240, 0.2);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 201, 240, 0.5);
+        }
+        
+        .feature-icon-wrapper {
+            flex-shrink: 0;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            width: 50px;
+            height: 50px;
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-content {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+        
+        .feature-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+        
+        /* Urgency Elements */
+        .urgency-container {
+            background: rgba(247, 37, 133, 0.15);
+            border: 1px solid rgba(247, 37, 133, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .urgency-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .urgency-item {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .urgency-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .urgency-content {
+            flex: 1;
+        }
+        
+        .urgency-title {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .urgency-text {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            gap: 15px;
+        }
+        
+        .countdown-item {
+            background: rgba(247, 37, 133, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 80px;
+            text-align: center;
+            border: 1px solid rgba(247, 37, 133, 0.3);
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        
+        .spots-left {
+            background: rgba(255, 214, 10, 0.2);
+            border: 2px solid var(--yellow);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            max-width: 500px;
+        }
+        
+        .spots-left-icon {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin-right: 15px;
+            animation: pulse-small 2s infinite;
+        }
+        
+        .spots-left-content {
+            text-align: left;
+        }
+        
+        .spots-left-title {
+            font-weight: 700;
+            color: var(--yellow);
+            font-size: 1.2rem;
+        }
+        
+        .spots-left-text {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        .spots-progress {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .spots-bar {
+            height: 100%;
+            width: 15%;
+            background: linear-gradient(90deg, var(--yellow), #ffa700);
+            border-radius: 4px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: var(--text);
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3);
+            text-align: center;
+            z-index: 1;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(247, 37, 133, 0.4);
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .btn-lg {
+            padding: 15px 35px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: 0 10px 20px rgba(114, 9, 183, 0.3);
+        }
+        
+        .btn-primary:hover {
+            box-shadow: 0 15px 25px rgba(114, 9, 183, 0.4);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent) 0%, #3a86ff 100%);
+            box-shadow: 0 10px 20px rgba(76, 201, 240, 0.3);
+        }
+        
+        .btn-accent:hover {
+            box-shadow: 0 15px 25px rgba(76, 201, 240, 0.4);
+        }
+        
+        .btn-yellow {
+            background: linear-gradient(135deg, var(--yellow) 0%, #ffa700 100%);
+            color: var(--dark-bg);
+            box-shadow: 0 10px 20px rgba(255, 214, 10, 0.3);
+            font-weight: 700;
+        }
+        
+        .btn-yellow:hover {
+            box-shadow: 0 15px 25px rgba(255, 214, 10, 0.4);
+        }
+        
+        .view-more-btn {
+            display: block;
+            margin: 25px auto 40px;
+            max-width: 400px;
+        }
+        
+        /* WhatsApp Fixed Icon */
+        .whatsapp-icon {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            animation: breathe-whatsapp 3s infinite;
+        }
+        
+        @keyframes breathe-whatsapp {
+            0%, 100% {
+                transform: translateY(-50%) scale(1);
+                box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.08);
+                box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
+            }
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--secondary);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+            animation: pulse-small 2s infinite;
+        }
+        
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--secondary-light) 100%);
+            color: var(--text);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(247, 37, 133, 0.4);
+            z-index: 1000;
+            min-width: 280px;
+            text-align: center;
+            animation: breathe 3s infinite;
+        }
+        
+        @keyframes breathe {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                box-shadow: 0 10px 30px rgba(247, 37, 133, 0.4);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                box-shadow: 0 15px 40px rgba(247, 37, 133, 0.6);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1) rotate(10deg);
+                box-shadow: 0 10px 20px rgba(247, 37, 133, 0.3);
+            }
+            50% {
+                transform: scale(1.05) rotate(10deg);
+                box-shadow: 0 15px 30px rgba(247, 37, 133, 0.4);
+            }
+        }
+        
+        @keyframes pulse-small {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes live-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-20 {
+            margin-top: 20px;
+        }
+        
+        .mt-30 {
+            margin-top: 30px;
+        }
+        
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .highlight-yellow {
+            color: var(--yellow);
+            font-weight: 600;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            
+            .discount-badge {
+                width: 80px;
+                height: 80px;
+                font-size: 1rem;
+            }
+            
+            .urgency-flex {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .urgency-item {
+                width: 100%;
+            }
+            
+            .feature-card {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: center;
+            }
+            
+            .feature-icon-wrapper {
+                margin: 0 auto 10px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero, .products, .features {
+                padding: 50px 0;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .floating-btn {
+                min-width: 250px;
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .whatsapp-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
+            
+            .countdown-container {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 65px;
+                padding: 10px;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .product-content {
+                padding: 15px;
+            }
+            
+            .product-title {
+                font-size: 1.1rem;
+            }
+            
+            .product-features {
+                font-size: 0.8rem;
+            }
+            
+            .feature-card {
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin: 0 auto 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .product-feature-item {
+                margin-bottom: 3px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .feature-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Screen 1: Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1 class="hero-title">Hey, planning an international trip?</h1>
+                    <p class="hero-subtitle">Don't forget to grab your eSIM package for hassle-free connectivity around the world!</p>
+                    
+                    <div class="urgency-container">
+                        <div class="urgency-flex">
+                            <div class="urgency-item">
+                                <div class="urgency-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <div class="urgency-content">
+                                    <div class="urgency-title">Limited Offer</div>
+                                    <div class="urgency-text">Up to 20% discount ending soon</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-lg btn-accent mt-30" onclick="openSite()">Contact Your Personal Manager</button>
+                </div>
+                <div class="hero-image">
+                    <img src="https://www.proaigood.store/the-alon/images/72e7d7bf91473c454ce83c2a42f0d195.jpg" alt="Global eSIM Packages">
+                    <div class="discount-badge">
+                        <span>UP TO</span>
+                        <span>20% OFF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screen 2: Products Section -->
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Popular Country eSIM Packages</h2>
+            
+            <div class="spots-left">
+                <div class="spots-left-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="spots-left-content">
+                    <div class="spots-left-title">Limited Availability!</div>
+                    <div class="spots-left-text">Only 50 spots remaining for 20% discount offer</div>
+                    <div class="spots-progress">
+                        <div class="spots-bar"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">13</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">45</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">22</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-content">
+                        <div class="product-title-wrapper">
+                            <div class="flag-small" style="background-image: url('https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/4x3/us.svg');"></div>
+                            <h4 class="product-title">USA eSIM</h4>
+                        </div>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Instant Activation</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <div class="product-title-wrapper">
+                            <div class="flag-small" style="background-image: url('https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/4x3/gb.svg');"></div>
+                            <h4 class="product-title">UK eSIM</h4>
+                        </div>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Instant Activation</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <div class="product-title-wrapper">
+                            <div class="flag-small" style="background-image: url('https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/4x3/sg.svg');"></div>
+                            <h4 class="product-title">Singapore eSIM</h4>
+                        </div>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Instant Activation</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <div class="product-title-wrapper">
+                            <div class="flag-small" style="background-image: url('https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/flags/4x3/ca.svg');"></div>
+                            <h4 class="product-title">Canada eSIM</h4>
+                        </div>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Instant Activation</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-accent view-more-btn" onclick="openSite()">
+                <i class="fas fa-globe-americas" style="margin-right: 10px;"></i> View More eSIM Packages
+            </button>
+            
+            <div class="text-center mb-30">
+                <img src="https://www.proaigood.store/the-alon/images/2985d475b8adf4f8a75e5b53b69a2ecc.jpg" alt="eSIM Packages" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);">
+            </div>
+            
+            <h3 class="product-type-title">Regional eSIM Packages</h3>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-content">
+                        <h4 class="product-title">Europe eSIM</h4>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>48+ Countries</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <h4 class="product-title">SE Asia eSIM</h4>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>12+ Countries</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <h4 class="product-title">Asia eSIM</h4>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>20+ Countries</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-content">
+                        <h4 class="product-title">Global eSIM</h4>
+                        <div class="product-features">
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>5G/4G Coverage</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>Unlimited Data</span>
+                            </div>
+                            <div class="product-feature-item">
+                                <span class="product-feature-icon"><i class="fas fa-check-circle"></i></span>
+                                <span>200+ Countries</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" onclick="openSite()">Get 20% Off Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-accent view-more-btn" onclick="openSite()">
+                <i class="fas fa-globe-asia" style="margin-right: 10px;"></i> View More eSIM Packages
+            </button>
+            
+            <div class="purchases-section">
+                <div class="purchase-ticker-header">
+                    <div class="purchase-ticker-title">
+                        <i class="fas fa-shopping-cart"></i> Recent Purchases
+                    </div>
+                    <div class="purchase-live-indicator">
+                        <div class="live-dot"></div>
+                        LIVE UPDATES
+                    </div>
+                </div>
+                
+                <div class="purchases-ticker" id="purchasesTicker">
+                    <div class="purchases-list" id="purchasesList1">
+                        <!-- First set of purchase items -->
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">John D*e</div>
+                                <div class="purchase-time">3 minutes ago, UK eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">Sarah S*ith</div>
+                                <div class="purchase-time">5 minutes ago, USA eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">Michael J*nes</div>
+                                <div class="purchase-time">7 minutes ago, Canada eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">Emma W*lson</div>
+                                <div class="purchase-time">4 minutes ago, Asia eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">David B*own</div>
+                                <div class="purchase-time">11 minutes ago, UK eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">Linda T*ylor</div>
+                                <div class="purchase-time">8 minutes ago, Europe eSIM</div>
+                            </div>
+                        </div>
+                        
+                        <div class="purchase-item">
+                            <div class="purchase-icon">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="purchase-info">
+                                <div class="purchase-name">Robert J*hnson</div>
+                                <div class="purchase-time">6 minutes ago, USA eSIM</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="purchases-list" id="purchasesList2">
+                        <!-- Duplicated set for continuous scrolling -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Screen 3: Features and CTA Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our eSIM Packages?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">200+ Countries Supported</h3>
+                        <p class="feature-description">Stay connected worldwide with our comprehensive global coverage network</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Multi-Device Sharing</h3>
+                        <p class="feature-description">Share your data across multiple devices without extra charges</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Refund Support</h3>
+                        <p class="feature-description">Flexible refund policy ensures your complete satisfaction</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-30">
+                <img src="https://www.proaigood.store/the-alon/images/72e7d7bf91473c454ce83c2a42f0d195.jpg" alt="Global eSIM Packages" style="max-width: 100%; border-radius: 15px; box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); margin-bottom: 30px;">
+                
+                <div class="urgency-container">
+                    <div class="urgency-flex">
+                        <div class="urgency-item">
+                            <div class="urgency-icon">
+                                <i class="fas fa-tag"></i>
+                            </div>
+                            <div class="urgency-content">
+                                <div class="urgency-title">Limited Offer</div>
+                                <div class="urgency-text">Up to 20% discount on any package</div>
+                            </div>
+                        </div>
+                        
+                        <div class="urgency-item">
+                            <div class="urgency-icon">
+                                <i class="fas fa-stopwatch"></i>
+                            </div>
+                            <div class="urgency-content">
+                                <div class="urgency-title">Act Fast</div>
+                                <div class="urgency-text">Only 50 spots remaining today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-lg btn-yellow mt-30" onclick="openSite()">Contact Your Personal Manager Now</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Fixed WhatsApp Icon -->
+    <div class="whatsapp-icon" onclick="openSite()">
+        <i class="fab fa-whatsapp"></i>
+        <div class="notification-badge">1</div>
+    </div>
+    
+    <!-- Floating Button -->
+    <button class="floating-btn" onclick="openSite()">Get Your 20% Discount Now!</button>
+    
+    <script>
+        // Function to open WhatsApp
+        function openSite() {
+            window.location.href = 'https://wa.me/your-whatsapp-number';
+        }
+        
+        // Improved continuous scroll for purchases
+        document.addEventListener('DOMContentLoaded', function() {
+            const purchasesList1 = document.getElementById('purchasesList1');
+            const purchasesList2 = document.getElementById('purchasesList2');
+            const purchasesTicker = document.getElementById('purchasesTicker');
+            
+            // Clone the purchase items for continuous scrolling
+            purchasesList2.innerHTML = purchasesList1.innerHTML;
+            
+            // Set up animation
+            let scrollHeight = purchasesList1.offsetHeight;
+            let currentPosition = 0;
+            const scrollSpeed = 1; // pixels per frame
+            
+            function scrollPurchases() {
+                currentPosition -= scrollSpeed;
+                
+                // Reset position when first list is scrolled out of view
+                if (currentPosition <= -scrollHeight) {
+                    currentPosition = 0;
+                }
+                
+                purchasesList1.style.transform = `translateY(${currentPosition}px)`;
+                purchasesList2.style.transform = `translateY(${currentPosition + scrollHeight}px)`;
+                
+                requestAnimationFrame(scrollPurchases);
+            }
+            
+            // Start scrolling
+            scrollPurchases();
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            let hours = parseInt(hoursElement.innerText);
+            let minutes = parseInt(minutesElement.innerText);
+            let seconds = parseInt(secondsElement.innerText);
+            
+            seconds--;
+            
+            if (seconds < 0) {
+                seconds = 59;
+                minutes--;
+                
+                if (minutes < 0) {
+                    minutes = 59;
+                    hours--;
+                    
+                    if (hours < 0) {
+                        // Reset to a new time when countdown reaches zero
+                        hours = 12;
+                        minutes = 0;
+                        seconds = 0;
+                    }
+                }
+            }
+            
+            hoursElement.innerText = hours < 10 ? '0' + hours : hours;
+            minutesElement.innerText = minutes < 10 ? '0' + minutes : minutes;
+            secondsElement.innerText = seconds < 10 ? '0' + seconds : seconds;
+        }
+        
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
