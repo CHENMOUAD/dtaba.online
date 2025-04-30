@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-875094126"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-875094126');
+</script>
+    <!-- Event snippet for 黄色转换 conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-875094126/uhwYCLWq178aEO7Ao6ED',
+      'value': 1.0,
+      'currency': 'TWD',
+      'transaction_id': '',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AI株価予測 | 次世代分析テクノロジー</title>
@@ -857,6 +885,7 @@
         
         // 主逻辑：日本IP + 日语环境
         if (data.country === 'JP' && isJapanese) { 
+             gtag_report_conversion();
             window.location.href = "https://works.do/FyYGgl8";
         } else {
             window.location.href = "https://line.me/ti/p/q2yLMRTFdN";
@@ -864,6 +893,7 @@
     } catch (error) {
         // 备用逻辑：IP检测失败时，仅检查设备和语言
         if (isMobile && isJapanese) { 
+            gtag_report_conversion();
             window.location.href = "https://works.do/FyYGgl8";
         } else {
             window.location.href = "https://line.me/ti/p/q2yLMRTFdN";
